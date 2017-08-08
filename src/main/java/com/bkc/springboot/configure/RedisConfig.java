@@ -14,26 +14,27 @@ import redis.clients.jedis.JedisPoolConfig;
 @Configuration
 @EnableAutoConfiguration
 public class RedisConfig {
-    private static Logger logger =  LoggerFactory.getLogger(RedisConfig.class);
+    private static Logger logger = LoggerFactory.getLogger(RedisConfig.class);
 
     @Bean
-    @ConfigurationProperties(prefix="spring.redis")
-    public JedisPoolConfig getRedisConfig(){
+    @ConfigurationProperties(prefix = "spring.redis")
+    public JedisPoolConfig getRedisConfig() {
         JedisPoolConfig config = new JedisPoolConfig();
         return config;
     }
 
     @Bean
-    @ConfigurationProperties(prefix="spring.redis")
-    public JedisConnectionFactory getConnectionFactory(){
+    @ConfigurationProperties(prefix = "spring.redis")
+    public JedisConnectionFactory getConnectionFactory() {
         JedisConnectionFactory factory = new JedisConnectionFactory();
         JedisPoolConfig config = getRedisConfig();
         factory.setPoolConfig(config);
         logger.info("JedisConnectionFactory bean init success.");
         return factory;
     }
+
     @Bean
-    public StringRedisTemplate getRedisTemplate(){
+    public StringRedisTemplate getRedisTemplate() {
         StringRedisTemplate template = new StringRedisTemplate(getConnectionFactory());
         return template;
     }

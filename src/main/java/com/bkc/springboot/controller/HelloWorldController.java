@@ -12,6 +12,7 @@ public class HelloWorldController {
     @Autowired
     private BookBean bookBean;
     private static Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
+
     @RequestMapping("helloworld")
     public String helloWorld() {
         logger.debug("访问HelloWorld");
